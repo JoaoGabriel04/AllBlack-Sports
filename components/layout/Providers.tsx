@@ -10,6 +10,16 @@ import type { Session } from "next-auth";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// THREE.Clock foi depreciado no Three.js r175+ mas @react-three/fiber ainda
+// usa internamente. Filtramos esse aviso específico até o R3F ser atualizado.
+if (typeof window !== "undefined") {
+  const _warn = console.warn.bind(console);
+  console.warn = (...args: unknown[]) => {
+    if (typeof args[0] === "string" && args[0].includes("THREE.Clock")) return;
+    _warn(...args);
+  };
+}
+
 export function Providers({
   children,
   session,

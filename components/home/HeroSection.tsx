@@ -15,6 +15,7 @@ export function HeroSection() {
           alt=""
           fill
           priority
+          sizes="100vw"
           className="object-cover object-center md:hidden"
         />
         {/* Versão desktop (escondida em <md) */}
@@ -23,6 +24,7 @@ export function HeroSection() {
           alt="AllBlack Sports — Camisas Copa do Mundo"
           fill
           priority
+          sizes="100vw"
           className="object-cover object-center hidden md:block"
         />
       </div>
