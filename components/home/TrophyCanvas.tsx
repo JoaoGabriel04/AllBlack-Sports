@@ -11,7 +11,7 @@ function TrophyModel({
   rotationY: React.MutableRefObject<number>;
 }) {
   const group = useRef<Group>(null);
-  const { scene } = useGLTF("/models/trofeu.glb");
+  const { scene } = useGLTF("/models/world cup trophy 3d model.glb");
 
   // clone evita compartilhamento de estado do scene graph entre renders
   const cloned = useMemo(() => scene.clone(true), [scene]);
