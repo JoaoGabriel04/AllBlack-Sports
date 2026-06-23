@@ -1,26 +1,13 @@
 import Link from "next/link";
+import { db } from "@/lib/db";
 import { ProductCard } from "@/components/ui/ProductCard";
 
-interface Product {
-  id: string;
-  name: string;
-  price: number;
-  images: string[];
-  category: string;
-  stock: number;
-  featured: boolean;
-}
-
-async function getFeaturedProducts(): Promise<Product[]> {
-  const baseUrl =
-    process.env.NEXTAUTH_URL ?? "http://localhost:3000";
-
-  const res = await fetch(`${baseUrl}/api/products?featured=true`, {
-    next: { revalidate: 60 },
+async function getFeaturedProducts() {
+  return db.product.findMany({
+    where: { featured: true },
+    orderBy: { createdAt: "desc" },
+    take: 8,
   });
-
-  if (!res.ok) return [];
-  return res.json();
 }
 
 export async function FeaturedProducts() {
@@ -55,7 +42,7 @@ export async function FeaturedProducts() {
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          {products.slice(0, 8).map((product) => (
+          {products.map((product) => (
             <ProductCard key={product.id} {...product} />
           ))}
         </div>
