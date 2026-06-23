@@ -1,1 +1,57 @@
 @import "tailwindcss";
+
+@theme inline {
+  /* Fonts — variáveis injetadas pelo next/font no elemento html */
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+
+  /* Backgrounds */
+  --color-canvas: #0a0a0a;
+  --color-soft-cloud: #141414;
+  --color-surface-raised: #1a1a1a;
+
+  /* Texto */
+  --color-ink: #ffffff;
+  --color-on-primary: #0a0a0a;
+  --color-mute: #6b6b6d;
+  --color-stone: #9e9ea0;
+
+  /* Bordas / divisores */
+  --color-hairline: #2a2a2b;
+
+  /* Acento Copa */
+  --color-gold: #d4af37;
+  --color-gold-glow: rgba(212, 175, 55, 0.2);
+
+  /* Semânticos */
+  --color-sale: #d30005;
+  --color-success: #1eaa52;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    /* Lenis controla o scroll — desliga o smooth nativo */
+    scroll-behavior: auto;
+    background-color: #0a0a0a;
+  }
+
+  body {
+    font-family: var(--font-body, "Inter", sans-serif);
+    background-color: #0a0a0a;
+    color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Remove outline padrão e aplica foco acessível */
+  :focus-visible {
+    outline: 2px solid #d4af37;
+    outline-offset: 2px;
+  }
+}
