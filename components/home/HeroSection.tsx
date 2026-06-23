@@ -38,6 +38,14 @@ export function HeroSection() {
         }}
       />
 
+      {/* Âncora inicial do troféu — lado esquerdo da hero, abaixo do bloco de texto.
+          Invisível; define onde o troféu fixo começa antes do scroll. */}
+      <div
+        id="trophy-start-anchor"
+        className="absolute hidden lg:block"
+        style={{ left: "2%", top: "44%", width: "33%", height: "50%" }}
+      />
+
       {/* Texto posicionado no topo-esquerdo, fora da área da camisa */}
       <div className="absolute top-0 left-0 pt-28 pl-8 md:pl-16 max-w-xs md:max-w-md flex flex-col gap-5">
         <div className="flex flex-col gap-1">

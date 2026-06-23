@@ -39,8 +39,15 @@ export function AboutSection() {
           </div>
         </div>
 
-        {/* Cards de diferenciais */}
-        <div className="grid grid-cols-2 gap-4">
+        {/* Desktop: âncora de destino do troféu — o canvas fixo aterra aqui */}
+        <div
+          id="trophy-end-anchor"
+          className="hidden lg:block"
+          style={{ minHeight: "480px" }}
+        />
+
+        {/* Mobile: cards de diferenciais (troféu não anima em telas pequenas) */}
+        <div className="grid grid-cols-2 gap-4 lg:hidden">
           {[
             {
               icon: "⚽",
