@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export function ModelsSection() {
   const models = [
     {
@@ -28,7 +30,7 @@ export function ModelsSection() {
 
   return (
     <section className="py-24 md:py-32 bg-canvas">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-screen-xl mx-auto px-6">
         <div className="flex flex-col items-center gap-3 mb-14 text-center">
           <span className="text-gold text-xs font-medium uppercase tracking-[0.2em]">
             Linha completa
@@ -50,9 +52,15 @@ export function ModelsSection() {
               key={model.key}
               className="group relative bg-soft-cloud overflow-hidden"
             >
-              {/* Placeholder de imagem */}
-              <div className="aspect-3/4 bg-surface-raised relative overflow-hidden">
-                <div className="absolute inset-0 flex items-end p-4 bg-linear-to-t from-canvas/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="aspect-[3/4] relative overflow-hidden bg-surface-raised">
+                <Image
+                  src={model.image}
+                  alt={model.label}
+                  fill
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 flex items-end p-4 bg-gradient-to-t from-canvas/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <p className="text-stone text-xs leading-relaxed">
                     {model.desc}
                   </p>
