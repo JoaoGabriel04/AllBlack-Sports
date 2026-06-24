@@ -1,5 +1,6 @@
 import { MapPin, Clock } from "lucide-react";
 import { buildWhatsAppUrl, buildCatalogMessage } from "@/lib/whatsapp";
+import { ScrollReveal, ScrollRevealStagger } from "@/components/ui/ScrollReveal";
 
 export function ContactSection() {
   const whatsappUrl = buildWhatsAppUrl(buildCatalogMessage());
@@ -7,22 +8,24 @@ export function ContactSection() {
   return (
     <section className="py-24 md:py-32 bg-soft-cloud">
       <div className="max-w-screen-xl mx-auto px-6">
-        <div className="flex flex-col items-center gap-3 mb-14 text-center">
-          <span className="text-gold text-xs font-medium uppercase tracking-[0.2em]">
-            Fale conosco
-          </span>
-          <h2
-            className="text-ink uppercase leading-none"
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(2.5rem, 5vw, 4rem)",
-            }}
-          >
-            Venha nos Visitar
-          </h2>
-        </div>
+        <ScrollReveal>
+          <div className="flex flex-col items-center gap-3 mb-14 text-center">
+            <span className="text-gold text-xs font-medium uppercase tracking-[0.2em]">
+              Fale conosco
+            </span>
+            <h2
+              className="text-ink uppercase leading-none"
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(2.5rem, 5vw, 4rem)",
+              }}
+            >
+              Venha nos Visitar
+            </h2>
+          </div>
+        </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
+        <ScrollRevealStagger className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
           {/* Localização */}
           <div className="bg-canvas border border-hairline p-6 flex flex-col gap-4">
             <MapPin size={20} className="text-gold" />
@@ -65,7 +68,7 @@ export function ContactSection() {
               Chamar agora
             </a>
           </div>
-        </div>
+        </ScrollRevealStagger>
       </div>
     </section>
   );
