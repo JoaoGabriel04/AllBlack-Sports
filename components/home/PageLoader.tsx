@@ -48,29 +48,32 @@ export function PageLoader() {
     }
   }, [combinedProgress]);
 
-  // Fire gate animation once when both sources signal done
+  // Fire gate animation 2s after both sources signal done
   useEffect(() => {
     if (!allLoaded || hasAnimated.current) return;
     hasAnimated.current = true;
 
-    // Hide #loader-bg so the content behind the panels is visible through
-    // the gap as the panels slide apart
-    const loaderBg = document.getElementById('loader-bg');
-    if (loaderBg) loaderBg.style.display = 'none';
+    let tl: ReturnType<typeof gsap.timeline>;
 
-    const tl = gsap.timeline({
-      onComplete: () => {
-        loaderBg?.remove();
-        setDone(true);
-      },
-    });
+    const timer = setTimeout(() => {
+      const loaderBg = document.getElementById('loader-bg');
+      if (loaderBg) loaderBg.style.display = 'none';
 
-    tl.to(centerRef.current, { opacity: 0, duration: 0.35, ease: 'power2.in' }, 0)
-      .to(leftRef.current, { x: '-50vw', duration: 1, ease: 'power2.inOut' }, 0)
-      .to(rightRef.current, { x: '50vw', duration: 1, ease: 'power2.inOut' }, 0);
+      tl = gsap.timeline({
+        onComplete: () => {
+          loaderBg?.remove();
+          setDone(true);
+        },
+      });
+
+      tl.to(centerRef.current, { opacity: 0, duration: 0.35, ease: 'power2.in' }, 0)
+        .to(leftRef.current, { x: '-50vw', duration: 1, ease: 'power2.inOut' }, 0)
+        .to(rightRef.current, { x: '50vw', duration: 1, ease: 'power2.inOut' }, 0);
+    }, 2000);
 
     return () => {
-      tl.kill();
+      clearTimeout(timer);
+      tl?.kill();
     };
   }, [allLoaded]);
 
