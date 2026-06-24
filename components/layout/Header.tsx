@@ -11,7 +11,7 @@ export function Header() {
   const { itemCount } = useCart();
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-canvas/95 backdrop-blur-sm border-b border-hairline">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-canvas border-b border-hairline">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="shrink-0">
@@ -21,7 +21,7 @@ export function Header() {
             width={130}
             height={36}
             priority
-            className="w-12"
+            className="w-16 sm:w-20"
             style={{ height: "auto" }}
           />
         </Link>
