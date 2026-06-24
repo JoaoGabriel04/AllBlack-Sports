@@ -56,6 +56,8 @@ export function PageLoader() {
     let tl: ReturnType<typeof gsap.timeline>;
 
     const timer = setTimeout(() => {
+      window.scrollTo(0, 0);
+
       const loaderBg = document.getElementById('loader-bg');
       if (loaderBg) loaderBg.style.display = 'none';
 
