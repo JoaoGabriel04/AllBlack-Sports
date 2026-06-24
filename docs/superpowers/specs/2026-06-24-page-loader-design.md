@@ -86,7 +86,7 @@ Duração total da animação: ~1s.
 
 | Arquivo | Mudança |
 |---------|---------|
-| `app/layout.tsx` | Adiciona `#loader-bg` div e importa `PageLoader` (ou via `page.tsx`) |
+| `app/layout.tsx` | Adiciona apenas o `<div id="loader-bg">` server-rendered — sem import de componentes cliente |
 | `app/page.tsx` | Adiciona `<PageLoader />` |
 | `components/home/PageLoader.tsx` | Novo arquivo — componente completo |
 
