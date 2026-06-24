@@ -1,47 +1,13 @@
 'use client';
 
-import { useRef, useState, useEffect, useMemo, Suspense } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { useGLTF, useProgress, Environment } from '@react-three/drei';
+import { useRef, useState, useEffect } from 'react';
+import { useGLTF, useProgress } from '@react-three/drei';
 import { gsap } from 'gsap';
-import * as THREE from 'three';
-import type { Group } from 'three';
 import { calcCombinedProgress } from './loaderUtils';
 
 useGLTF.preload('/models/trofeu-copa-do-mundo.glb');
 
 const HERO_IMAGES = ['/images/hero-mobile.png', '/images/hero-desktop.png'];
-
-function MiniTrophy() {
-  const group = useRef<Group>(null);
-  const { scene } = useGLTF('/models/trofeu-copa-do-mundo.glb');
-  const cloned = useMemo(() => scene.clone(true), [scene]);
-
-  useFrame((_, delta) => {
-    if (group.current) {
-      group.current.rotation.y += delta * 0.5;
-    }
-  });
-
-  return (
-    <group ref={group}>
-      <primitive object={cloned} />
-    </group>
-  );
-}
-
-function RingFallback() {
-  const ref = useRef<THREE.Mesh>(null);
-  useFrame((_, delta) => {
-    if (ref.current) ref.current.rotation.z += delta * 2;
-  });
-  return (
-    <mesh ref={ref}>
-      <torusGeometry args={[0.3, 0.04, 8, 48]} />
-      <meshStandardMaterial color="#d4af37" emissive="#d4af37" emissiveIntensity={0.5} />
-    </mesh>
-  );
-}
 
 function useImagePreload(urls: string[]) {
   const [loaded, setLoaded] = useState(false);
@@ -140,7 +106,7 @@ export function PageLoader() {
           willChange: 'transform',
         }}
       />
-      {/* Center content: mini trophy + brand + progress bar */}
+      {/* Center content: brand + progress bar */}
       <div
         ref={centerRef}
         style={{
@@ -156,23 +122,6 @@ export function PageLoader() {
           pointerEvents: 'none',
         }}
       >
-        {!allLoaded && (
-          <Canvas
-            camera={{ position: [0, 1.5, 5], fov: 40 }}
-            gl={{ antialias: true, alpha: true }}
-            dpr={[1, 1.5]}
-            style={{ width: 140, height: 140 }}
-          >
-            <ambientLight intensity={1.0} />
-            <directionalLight position={[5, 10, 5]} intensity={2.0} color="#ffffff" />
-            <Suspense fallback={<RingFallback />}>
-              <Environment preset="studio" />
-              <MiniTrophy />
-            </Suspense>
-          </Canvas>
-        )}
-        {allLoaded && <div style={{ width: 140, height: 140 }} />}
-
         <span
           style={{
             fontFamily: 'var(--font-display)',
