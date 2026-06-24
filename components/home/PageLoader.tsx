@@ -74,7 +74,6 @@ export function PageLoader() {
 
       tl = gsap.timeline({
         onComplete: () => {
-          loaderBg?.remove();
           setDone(true);
         },
       });
