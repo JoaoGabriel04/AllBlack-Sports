@@ -1,6 +1,10 @@
 'use client';
 
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, useLayoutEffect } from 'react';
+
+if (typeof window !== 'undefined') {
+  history.scrollRestoration = 'manual';
+}
 import { useGLTF, useProgress } from '@react-three/drei';
 import { gsap } from 'gsap';
 import { calcCombinedProgress } from './loaderUtils';
@@ -34,6 +38,13 @@ export function PageLoader() {
   const centerRef = useRef<HTMLDivElement>(null);
   const barRef = useRef<HTMLDivElement>(null);
   const hasAnimated = useRef(false);
+
+  // Reset scroll before TrophyScrollController.useEffect runs its setup().
+  // useLayoutEffect fires before any useEffect, ensuring getBoundingClientRect()
+  // reads correct positions regardless of browser scroll restoration on refresh.
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const { active, progress: gltfProgress } = useProgress();
   const imagesLoaded = useImagePreload(HERO_IMAGES);
