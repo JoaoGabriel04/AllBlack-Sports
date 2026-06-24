@@ -42,6 +42,15 @@ export default async function RootLayout({
       className={`${displayFont.variable} ${bodyFont.variable}`}
     >
       <body>
+        <div
+          id="loader-bg"
+          style={{
+            position: 'fixed',
+            inset: 0,
+            background: '#0a0a0a',
+            zIndex: 9998,
+          }}
+        />
         <Providers session={session}>{children}</Providers>
       </body>
     </html>
