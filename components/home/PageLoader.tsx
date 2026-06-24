@@ -123,6 +123,7 @@ export function PageLoader() {
           height: '100vh',
           background: '#0a0a0a',
           zIndex: 9999,
+          willChange: 'transform',
         }}
       />
       {/* Right gate panel */}
@@ -136,6 +137,7 @@ export function PageLoader() {
           height: '100vh',
           background: '#0a0a0a',
           zIndex: 9999,
+          willChange: 'transform',
         }}
       />
       {/* Center content: mini trophy + brand + progress bar */}
@@ -154,19 +156,22 @@ export function PageLoader() {
           pointerEvents: 'none',
         }}
       >
-        <Canvas
-          camera={{ position: [0, 1.5, 5], fov: 40 }}
-          gl={{ antialias: true, alpha: true }}
-          dpr={[1, 1.5]}
-          style={{ width: 140, height: 140 }}
-        >
-          <ambientLight intensity={1.0} />
-          <directionalLight position={[5, 10, 5]} intensity={2.0} color="#ffffff" />
-          <Suspense fallback={<RingFallback />}>
-            <Environment preset="studio" />
-            <MiniTrophy />
-          </Suspense>
-        </Canvas>
+        {!allLoaded && (
+          <Canvas
+            camera={{ position: [0, 1.5, 5], fov: 40 }}
+            gl={{ antialias: true, alpha: true }}
+            dpr={[1, 1.5]}
+            style={{ width: 140, height: 140 }}
+          >
+            <ambientLight intensity={1.0} />
+            <directionalLight position={[5, 10, 5]} intensity={2.0} color="#ffffff" />
+            <Suspense fallback={<RingFallback />}>
+              <Environment preset="studio" />
+              <MiniTrophy />
+            </Suspense>
+          </Canvas>
+        )}
+        {allLoaded && <div style={{ width: 140, height: 140 }} />}
 
         <span
           style={{
