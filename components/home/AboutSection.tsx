@@ -1,9 +1,11 @@
+import { ScrollReveal, ScrollRevealStagger } from "@/components/ui/ScrollReveal";
+
 export function AboutSection() {
   return (
-    <section className="py-24 md:py-32 bg-soft-cloud">
-      <div className="max-w-screen-xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    <section id="about-section" className="py-24 md:py-32 bg-soft-cloud">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         {/* Texto */}
-        <div className="flex flex-col gap-6">
+        <ScrollReveal className="flex flex-col gap-6">
           <span className="text-gold text-xs font-medium uppercase tracking-[0.2em]">
             Nossa história
           </span>
@@ -37,17 +39,18 @@ export function AboutSection() {
               camisa do seu clube com a confiança de quem entende de qualidade.
             </p>
           </div>
-        </div>
+        </ScrollReveal>
 
-        {/* Desktop: âncora de destino do troféu — o canvas fixo aterra aqui */}
+        {/* Desktop: âncora de destino do troféu — o canvas fixo aterra aqui.
+            580px de altura ≈ 2× a altura do start anchor em viewport típico. */}
         <div
           id="trophy-end-anchor"
           className="hidden lg:block"
-          style={{ minHeight: "480px" }}
+          style={{ minHeight: "580px" }}
         />
 
         {/* Mobile: cards de diferenciais (troféu não anima em telas pequenas) */}
-        <div className="grid grid-cols-2 gap-4 lg:hidden">
+        <ScrollRevealStagger className="grid grid-cols-2 gap-4 lg:hidden">
           {[
             {
               icon: "⚽",
@@ -81,7 +84,7 @@ export function AboutSection() {
               <p className="text-mute text-xs leading-relaxed">{item.desc}</p>
             </div>
           ))}
-        </div>
+        </ScrollRevealStagger>
       </div>
     </section>
   );
