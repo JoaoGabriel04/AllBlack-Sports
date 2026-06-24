@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ScrollReveal, ScrollRevealStagger } from "@/components/ui/ScrollReveal";
 
 export function ModelsSection() {
   const models = [
@@ -31,22 +32,24 @@ export function ModelsSection() {
   return (
     <section className="py-24 md:py-32 bg-canvas">
       <div className="max-w-screen-xl mx-auto px-6">
-        <div className="flex flex-col items-center gap-3 mb-14 text-center">
-          <span className="text-gold text-xs font-medium uppercase tracking-[0.2em]">
-            Linha completa
-          </span>
-          <h2
-            className="text-ink uppercase leading-none"
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(2.5rem, 5vw, 4rem)",
-            }}
-          >
-            Nossos Modelos
-          </h2>
-        </div>
+        <ScrollReveal>
+          <div className="flex flex-col items-center gap-3 mb-14 text-center">
+            <span className="text-gold text-xs font-medium uppercase tracking-[0.2em]">
+              Linha completa
+            </span>
+            <h2
+              className="text-ink uppercase leading-none"
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(2.5rem, 5vw, 4rem)",
+              }}
+            >
+              Nossos Modelos
+            </h2>
+          </div>
+        </ScrollReveal>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <ScrollRevealStagger className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {models.map((model) => (
             <div
               key={model.key}
@@ -72,7 +75,7 @@ export function ModelsSection() {
               </div>
             </div>
           ))}
-        </div>
+        </ScrollRevealStagger>
 
         <p className="text-mute text-xs text-center mt-8">
           * Imagens meramente ilustrativas. Modelos e estampas podem variar conforme o estoque disponível.
