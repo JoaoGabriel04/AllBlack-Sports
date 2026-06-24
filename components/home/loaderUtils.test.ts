@@ -22,7 +22,7 @@ describe('calcCombinedProgress', () => {
     expect(calcCombinedProgress(50, false)).toBe(30);
   });
 
-  it('rounds fractional progress down', () => {
+  it('rounds fractional progress to nearest integer', () => {
     // 33 * 0.6 = 19.8 → rounds to 20
     expect(calcCombinedProgress(33, false)).toBe(20);
   });

@@ -102,6 +102,10 @@ export function PageLoader() {
     tl.to(centerRef.current, { opacity: 0, duration: 0.35, ease: 'power2.in' }, 0)
       .to(leftRef.current, { x: '-50vw', duration: 1, ease: 'power2.inOut' }, 0)
       .to(rightRef.current, { x: '50vw', duration: 1, ease: 'power2.inOut' }, 0);
+
+    return () => {
+      tl.kill();
+    };
   }, [allLoaded]);
 
   if (done) return null;
