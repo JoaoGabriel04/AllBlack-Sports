@@ -11,6 +11,15 @@ import { PageLoader } from "@/components/home/PageLoader";
 export default function HomePage() {
   return (
     <>
+      <div
+        id="loader-bg"
+        style={{
+          position: 'fixed',
+          inset: 0,
+          background: '#0a0a0a',
+          zIndex: 9998,
+        }}
+      />
       <Header />
       <main className="pt-16">
         <HeroSection />
