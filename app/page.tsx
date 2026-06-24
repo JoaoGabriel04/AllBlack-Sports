@@ -6,6 +6,7 @@ import { FeaturedProducts } from "@/components/home/FeaturedProducts";
 import { ModelsSection } from "@/components/home/ModelsSection";
 import { ContactSection } from "@/components/home/ContactSection";
 import { TrophyScrollController } from "@/components/home/TrophyScrollController";
+import { PageLoader } from "@/components/home/PageLoader";
 
 export default function HomePage() {
   return (
@@ -19,8 +20,8 @@ export default function HomePage() {
         <ContactSection />
       </main>
       <Footer />
-      {/* Troféu: overlay fixo animado por GSAP do Hero até a seção de História */}
       <TrophyScrollController />
+      <PageLoader />
     </>
   );
 }
