@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { db } from "@/lib/db";
 import { ProductCard } from "@/components/ui/ProductCard";
+import { ScrollReveal, ScrollRevealStagger } from "@/components/ui/ScrollReveal";
 
 async function getFeaturedProducts() {
   return db.product.findMany({
@@ -18,34 +19,36 @@ export async function FeaturedProducts() {
   return (
     <section className="py-24 md:py-32 bg-canvas">
       <div className="max-w-screen-xl mx-auto px-6">
-        <div className="flex items-end justify-between mb-10">
-          <div className="flex flex-col gap-2">
-            <span className="text-gold text-xs font-medium uppercase tracking-[0.2em]">
-              Seleção especial
-            </span>
-            <h2
-              className="text-ink uppercase leading-none"
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "clamp(2rem, 4vw, 3.5rem)",
-              }}
+        <ScrollReveal>
+          <div className="flex items-end justify-between mb-10">
+            <div className="flex flex-col gap-2">
+              <span className="text-gold text-xs font-medium uppercase tracking-[0.2em]">
+                Seleção especial
+              </span>
+              <h2
+                className="text-ink uppercase leading-none"
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "clamp(2rem, 4vw, 3.5rem)",
+                }}
+              >
+                Destaques
+              </h2>
+            </div>
+            <Link
+              href="/catalogo"
+              className="text-mute text-sm hover:text-ink transition-colors hidden sm:block"
             >
-              Destaques
-            </h2>
+              Ver todos →
+            </Link>
           </div>
-          <Link
-            href="/catalogo"
-            className="text-mute text-sm hover:text-ink transition-colors hidden sm:block"
-          >
-            Ver todos →
-          </Link>
-        </div>
+        </ScrollReveal>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <ScrollRevealStagger className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {products.map((product) => (
             <ProductCard key={product.id} {...product} />
           ))}
-        </div>
+        </ScrollRevealStagger>
 
         <div className="mt-8 flex justify-center sm:hidden">
           <Link
