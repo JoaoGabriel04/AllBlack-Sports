@@ -2,8 +2,8 @@ import { ScrollReveal, ScrollRevealStagger } from "@/components/ui/ScrollReveal"
 
 export function AboutSection() {
   return (
-    <section id="about-section" className="py-24 md:py-32 bg-soft-cloud">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    <section className="py-24 md:py-32 bg-soft-cloud">
+      <div className="max-w-screen-xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         {/* Texto */}
         <ScrollReveal className="flex flex-col gap-6">
           <span className="text-gold text-xs font-medium uppercase tracking-[0.2em]">
@@ -41,12 +41,11 @@ export function AboutSection() {
           </div>
         </ScrollReveal>
 
-        {/* Desktop: âncora de destino do troféu — o canvas fixo aterra aqui.
-            580px de altura ≈ 2× a altura do start anchor em viewport típico. */}
+        {/* Desktop: âncora de destino do troféu — o canvas fixo aterra aqui */}
         <div
           id="trophy-end-anchor"
           className="hidden lg:block"
-          style={{ minHeight: "580px" }}
+          style={{ minHeight: "480px" }}
         />
 
         {/* Mobile: cards de diferenciais (troféu não anima em telas pequenas) */}
